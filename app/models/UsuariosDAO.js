@@ -1,18 +1,16 @@
 function UsuariosDAO ( connection ) {
-    console.log( 'Model Usuarios' )
-    this._connection = connection()
-    console.log( 'Conexão executada', this._connection )
+    this._connection = connection
 }
 
-UsuariosDAO.prototype.inserirUsuario = ( usuario, res ) => {
+UsuariosDAO.prototype.inserirUsuario = function ( usuario, res ) {
      
      const dados = {
         operacao: "inserir",
         usuario: usuario,
         collection: "usuarios",
         callback: ( err, result ) => {
-            if ( err ) throw new Error( err )
-            res.send( "insert OK" )
+            if ( err ) return res.send( err )
+             res.status(200).json({mesage:'Inserido com sucesso!'})
         }
     }
     
