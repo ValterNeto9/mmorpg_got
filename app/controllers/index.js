@@ -17,5 +17,9 @@ module.exports.autenticar = ( application, req, res ) => {
         return
     }
     
-    res.send('tudo ok para autenticar')
+    const connection = application.config.dbConnection
+    const UsuariosDAO = new application.app.models.UsuariosDAO( connection )
+    
+    UsuariosDAO.autenticar( dados, req, res );
+    
 }

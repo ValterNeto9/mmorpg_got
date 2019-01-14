@@ -17,4 +17,30 @@ UsuariosDAO.prototype.inserirUsuario = function ( usuario, res ) {
     this._connection( dados )
 }
 
+UsuariosDAO.prototype.autenticar = function ( usuario, req, res ) {
+     
+     const dados = {
+        operacao: "buscar",
+        usuario: usuario,
+        collection: "usuarios",
+        callback: ( err, result ) => {
+            
+            if ( err ) return res.send( err )
+            
+            if ( !result. length ) {
+                res.render('index', { errors: {} } )
+                return
+            }
+            
+            req.session.autenticado = true
+            req.session.user = result[0]
+            
+            res.redirect('jogo')
+            
+        }
+    }
+    
+    this._connection( dados )
+}
+
 module.exports = () => UsuariosDAO
