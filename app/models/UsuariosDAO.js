@@ -6,7 +6,7 @@ UsuariosDAO.prototype.inserirUsuario = function ( usuario, res ) {
      
      const dados = {
         operacao: "inserir",
-        usuario: usuario,
+        registro: usuario,
         collection: "usuarios",
         callback: ( err, result ) => {
             if ( err ) return res.send( err )

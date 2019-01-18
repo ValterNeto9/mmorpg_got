@@ -20,10 +20,10 @@ function query( _db, dados ) {
     var collection = _db.collection( dados.collection );
     switch ( dados.operacao ) {
         case "inserir":
-            collection.insertOne( dados.usuario, dados.callback );
+            collection.insertOne( dados.registro, dados.callback );
             break;
         case "buscar":
-            collection.find( dados.usuario ).toArray( dados.callback );
+            collection.find( dados.registro ).toArray( dados.callback );
             break;
         default:
             break;
