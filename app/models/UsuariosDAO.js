@@ -9,8 +9,9 @@ UsuariosDAO.prototype.inserirUsuario = function ( usuario, res ) {
         registro: usuario,
         collection: "usuarios",
         callback: ( err, result ) => {
+            console.log('Resultado Insert:', result)
             if ( err ) return res.send( err )
-             res.status(200).json({mesage:'Inserido com sucesso!'})
+             console.log({mesage:'Inserido com sucesso!'})
         }
     }
     

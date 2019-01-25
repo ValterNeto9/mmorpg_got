@@ -16,11 +16,27 @@ JogoDAO.prototype.gerarParametros = function ( usuario, res ) {
      
      const dados = {
         operacao: "inserir",
-        registro: usuario,
+        registro: jogo,
         collection: "jogo",
         callback: ( err, result ) => {
             if ( err ) return res.send( err )
-             res.status(200).json({mesage:'Inserido com sucesso!'})
+             res.render( 'index', { errors: {} } )
+        }
+    }
+    
+    this._connection( dados )
+}
+
+JogoDAO.prototype.iniciarJogo = function ( res, _usuario ) {
+     
+     const dados = {
+        operacao: "buscar",
+        registro: _usuario.usuario,
+        collection: "jogo",
+        callback: ( err, result ) => {
+            if ( err ) return res.send( err )
+            console.log('Iniciando o Jogo com:', result[0])
+            res.render( 'jogo', { img_casa: _usuario.casa, jogo: result[0] } )
         }
     }
     
