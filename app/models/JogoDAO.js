@@ -27,7 +27,7 @@ JogoDAO.prototype.gerarParametros = function ( usuario, res ) {
     this._connection( dados )
 }
 
-JogoDAO.prototype.iniciarJogo = function ( res, _usuario ) {
+JogoDAO.prototype.iniciarJogo = function ( res, _usuario, comando_invalido ) {
      
      const dados = {
         operacao: "buscar",
@@ -36,7 +36,11 @@ JogoDAO.prototype.iniciarJogo = function ( res, _usuario ) {
         callback: ( err, result ) => {
             if ( err ) return res.send( err )
             console.log('Iniciando o Jogo com:', result[0])
-            res.render( 'jogo', { img_casa: _usuario.casa, jogo: result[0] } )
+            res.render( 'jogo', { 
+                                    img_casa: _usuario.casa
+                                    , jogo: result[0]
+                                    , comando_invalido: comando_invalido
+                                })
         }
     }
     
