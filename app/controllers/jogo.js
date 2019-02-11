@@ -2,14 +2,14 @@ module.exports.jogo = ( application, req, res ) => {
     
     if ( !req.session.autenticado ) return res.send( 'Necessário efetuar o login.' )
     
-    const comando_invalido = req.query.comando_invalido !== 'S' ? 'N' : 'S'
+    const msg = req.query.msg !== '' ? req.query.msg : ''
     
     const usuario = req.session.user
     
     const connection = application.config.dbConnection
     const JogoDAO = new application.app.models.JogoDAO( connection )
     
-    JogoDAO.iniciarJogo( res, usuario, comando_invalido )
+    JogoDAO.iniciarJogo( res, usuario, msg )
 }
 
 module.exports.sair = ( application, req, res ) => {
@@ -42,9 +42,15 @@ module.exports.executar_acao_sudito = ( application, req, res ) => {
     const errors = req.validationErrors()
     
     if ( errors.length > 0 ) {
-        res.redirect('jogo?comando_invalido=S')
+        res.redirect('jogo?msg=A')
         return
     }
     
-    res.send( 'Ok man!' )
+    const connection  = application.config.dbConnection
+    const JogoDAO = new application.app.models.JogoDAO( connection )
+    
+    dadosForm.usuario = req.session.user.usuario
+    
+    JogoDAO.acao( res, dadosForm )
+    
 }

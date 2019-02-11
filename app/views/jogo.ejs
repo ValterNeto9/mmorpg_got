@@ -21,7 +21,7 @@
 				})
 				
 				$('#btn_suditos').click( () => {
-					$('#msg_erros').hide()
+					$('#msg').hide()
 					
 					$.ajax({
 						url:'/suditos'
@@ -33,7 +33,7 @@
 				})
 				
 				$('#btn_pergaminhos').click( () => {
-					$('#msg_erros').hide()
+					$('#msg').hide()
 					
 					$.ajax({
 						url: '/pergaminhos'
@@ -61,10 +61,18 @@
 
 	    <div class="container">
 	    	
-	    	<% if ( comando_invalido === 'S' ) {%>
+	    	<% if ( msg === 'A' ) {%>
 	    		
-	    		<div class="alert alert-danger" id="msg_erros">
+	    		<div class="alert alert-danger" id="msg">
 					<strong>Operação inválida, verifique se todos os campos foram informados!</strong>
+	    		</div>
+	    		
+	    	<% } %>
+	    	
+	    	<% if ( msg === 'B' ) {%>
+	    		
+	    		<div class="alert alert-info" id="msg">
+					<strong>Ação realizada com sucesso!</strong>
 	    		</div>
 	    		
 	    	<% } %>
@@ -89,6 +97,7 @@
 						<div class="col-sm-2"> 
 							<img src="images/habilidades/comercio.jpg" title="Comércio" alt="Comércio"/>
 							<span><%=jogo.comercio%></span>
+			
 						</div>
 						
 						<div class="col-sm-2"> 
