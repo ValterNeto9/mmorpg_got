@@ -22,13 +22,13 @@ UsuariosDAO.prototype.autenticar = function ( usuario, req, res ) {
      
      const dados = {
         operacao: "buscar",
-        usuario: usuario,
+        registro: usuario,
         collection: "usuarios",
         callback: ( err, result ) => {
             
             if ( err ) return res.send( err )
             
-            if ( !result. length ) {
+            if ( !result.length ) {
                 res.render('index', { errors: {} } )
                 return
             }

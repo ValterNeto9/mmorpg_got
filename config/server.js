@@ -36,7 +36,6 @@ app.use(expressSession( {
 	saveUninitialized: false
 }));
 
-
 /* efetua o autoload das rotas, dos models e dos controllers para o objeto app */
 consign()
 	.include('app/routes')

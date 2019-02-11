@@ -2,7 +2,7 @@ module.exports.jogo = ( application, req, res ) => {
     
     if ( !req.session.autenticado ) return res.send( 'Necessário efetuar o login.' )
     
-    const comando_invalido = req.query.comando_invalido ? 'S' : 'N'
+    const comando_invalido = req.query.comando_invalido !== 'S' ? 'N' : 'S'
     
     const usuario = req.session.user
     
@@ -36,7 +36,7 @@ module.exports.executar_acao_sudito = ( application, req, res ) => {
     
     const dadosForm = req.body
     
-    req.assert('acoes', 'Ação deve ser preenchida').notEmpty()
+    req.assert('acao', 'Ação deve ser preenchida').notEmpty()
     req.assert('quantidade', 'Quatidade deve ser preenchida').notEmpty()
     
     const errors = req.validationErrors()
