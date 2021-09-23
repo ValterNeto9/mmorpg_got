@@ -16,5 +16,9 @@
     "express-session": "^1.15.6",
     "express-validator": "^2.20.8",
     "mongodb": "^3.0.2"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.2"
   }
 }
